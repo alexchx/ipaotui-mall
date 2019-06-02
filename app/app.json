@@ -22,7 +22,7 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ff5801",
     "navigationBarTitleText": "爱跑腿外卖",
-    "navigationBarTextStyle": "light"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "selectedColor": "#ff5801",
@@ -46,5 +46,10 @@
         "text": "我的"
       }
     ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
   }
 }
