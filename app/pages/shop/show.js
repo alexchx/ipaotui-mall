@@ -176,12 +176,14 @@ Page({
   },
 
   increase(e) {
-    var {order, info: {goods_map}} = this.data;
+    var {order, info: {menus}} = this.data;
     var {goodsId, subId} = e.currentTarget.dataset;
-    var goods = goods_map[goodsId];
+
+    var goods2 = menus[this.data.activeMenuIndex].goods2;
+    var goods = goods2.find(item => item.goods_id == goodsId);
     var {goods_id, goods_name} = goods
     if (subId) {
-      goods = goods.sub_goods_map[subId];
+      goods = goods.sub_goods.find(item => item.sub_id == subId);
       var {sub_id, sub_name} = goods
     }
     order.totalNum += 1;
@@ -211,12 +213,13 @@ Page({
 
   },
   decrease(e) {
-    var {order, info: {goods_map}} = this.data;
+    var {order, info: {menus}} = this.data;
     var {goodsId, subId} = e.currentTarget.dataset;
 
-    var goods = goods_map[goodsId];
+    var goods2 = menus[this.data.activeMenuIndex].goods2;
+    var goods = goods2.find(item => item.goods_id == goodsId);
     if (subId) {
-      goods = goods.sub_goods_map[subId];
+      goods = goods.sub_goods.find(item => item.sub_id == subId);
     }
     order.totalNum -= 1;
     order.totalGoodsPrice -= +goods.price;
@@ -289,9 +292,11 @@ Page({
   },
 
   showSubGoods(e) {
-    var {info: {goods_map}, order} = this.data;
+    var {info: {menus}, order} = this.data;
     var {goodsId} = e.currentTarget.dataset;
-    var {goods_id, goods_name, sub_goods} = goods_map[goodsId];
+
+    var goods2 = menus[this.data.activeMenuIndex].goods2;
+    var { goods_id, goods_name, sub_goods } = goods2.find(item => item.goods_id == goodsId);
     this.setData({
       showSubGoods: true,
       activeSubGoods: {
