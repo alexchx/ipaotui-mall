@@ -202,7 +202,6 @@ export function fetch(options) {
       if (data.State == 'Success') {
         options.success && options.success(data.data)
       } else {
-        alert(data.info)
         options.error && options.error(data.info)
       }
       options.complete && options.complete()
